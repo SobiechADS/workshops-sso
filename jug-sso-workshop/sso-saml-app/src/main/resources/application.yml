@@ -1,0 +1,27 @@
+KEYCLOAK_REALM: http://saml.keycloak.local:8190/realms/workshop-saml-realm
+
+server:
+  port: 9190
+
+spring:
+  application:
+    name: sso-saml-app
+  security:
+    saml2:
+      relyingparty:
+        registration:
+          keycloak:
+            entity-id: saml-app
+            signing:
+              credentials:
+                - private-key-location: classpath:keys/saml-signing.key
+                  certificate-location: classpath:keys/saml-signing.crt
+            assertingparty:
+              metadataUri: ${KEYCLOAK_REALM}/protocol/saml/descriptor
+              singlesignon:
+                url: ${KEYCLOAK_REALM}/protocol/saml
+                sign-request: true
+                binding: POST
+              singlelogout:
+                url: ${KEYCLOAK_REALM}/protocol/saml
+                binding: POST

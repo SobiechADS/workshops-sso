@@ -1,0 +1,79 @@
+{
+  "realm": "workshop-saml-realm",
+  "enabled": true,
+  "roles": {
+    "realm": [
+      {
+        "name": "user"
+      },
+      {
+        "name": "admin"
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "saml-app",
+      "protocol": "saml",
+      "enabled": true,
+      "attributes": {
+        "saml.assertion.signature": "true",
+        "saml.client.signature": "true",
+        "saml.authnstatement": "true",
+        "saml_force_post_binding": "true",
+        "saml_name_id_format": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress",
+        "saml_signature_algorithm": "RSA_SHA256",
+        "saml_encrypt": "false",
+        "saml.signing.certificate": "-----BEGIN CERTIFICATE-----\nMIIFGTCCAwGgAwIBAgIUCWxTYv3oBqs4oYlUDXrGRhXTSHcwDQYJKoZIhvcNAQEL\nBQAwHDEaMBgGA1UEAwwRc2FtbC13b3Jrc2hvcC1hcHAwHhcNMjUxMjA1MTA1MjQ5\nWhcNMjgwMTIxMTA1MjQ5WjAcMRowGAYDVQQDDBFzYW1sLXdvcmtzaG9wLWFwcDCC\nAiIwDQYJKoZIhvcNAQEBBQADggIPADCCAgoCggIBAMNWhmTHazDWd85YwNfWZnvi\nzF7a0USwC2lX5GhtC6Oyip2RFwZc1PbYyGdVf1leD7/D9SKjdyPkr/RYRgDmNA0X\ntoCYmbIViwomJCX10Dsbmp8FpAQy1fcgyg7BBkg8ywx71QD/LNCPWEhtlWiYs7+i\nkjOu3jZmzMCDeTKvk0h94uDzSXLBalqzMXNmQRa8PHOxlp2fLWnC8H+cvOHwtOKb\njX/Rfcc/p5820gPvc+hYgmw+FumLov2SKSepcYo8pMdTBK5pG0WhWKWxzdZYPMmF\ncWGkeO4f5nwWAxjLksGUdu7KDVZlGx3MDYZuY6hef/xB/YVFdCjU5idllOwrT4zf\ne5m9uBP0bMIkNs0iVYlMQhfeN1PI62PSIo4NvtEcbQs9IDtPGSt2RMbDEHlWdvEs\nooa4kODdX9DS8IMvsglRHyOJegOHK7Ayymjz+RaT6wnpPj9k1ulWcM9llk9BelAF\njSBrd69gF0jr4NDTb4WncrD8Poi2dqBBnB5y+3sglyyB+G/Oiy6Gq5+lu/+GkAC3\n3GXj7LpphTZtqEXlnxgjJq3t007E1p9BQljqcWQagmTVL6rZy1MT+eQFI72MdRgq\nEPYIUAEySVUM1N+Xm5kyzrzEE5hf4VSks29QQeaOmkaTTvr9hu63zet1UJV4NhP4\n75QHZi1iTbzFkluy2mPnAgMBAAGjUzBRMB0GA1UdDgQWBBSSep9zdtmfNWOYmC6U\nHXQmwdgMhTAfBgNVHSMEGDAWgBSSep9zdtmfNWOYmC6UHXQmwdgMhTAPBgNVHRMB\nAf8EBTADAQH/MA0GCSqGSIb3DQEBCwUAA4ICAQAS/vVqGmg3LcJ3jNq5QJhRg2nC\nq6npzBHNBtkRAtHoAWq3DCIVZu746rlmcQMinMTISJakGS7WPH4tdhmco9EjDG2V\ngu5YZH4qsBhDeY1vvNnYAfiO54qJQ4sY5drbycKMUKHpICNyc7M9fYQorTEtV3Wf\nxFt/WyB1Xc8j5UqObWUXAj5clmJuK8mtuDC/dNyyQqScrxqhsuG68Vjul+Giu0a/\n3tppty1Y7fEkr7oZ6vP+rXhetBzuCcgH9XS8AJIJjTUUkvkkPB1ClP7UzehPlKKA\ns7i9s4wME7PX+vS8L1POUretj7mYDdTjLjxZFNUDG9e0+gKyEnlZppJ/VMIXd2ZO\nM/X5h1etEbngYFf9ZwAYCKi+ry817dHkZjAaZ5q80soazkjlQttosMojWp7Wluqk\ngnQk5O+CPKZTBA47b8oyFc5FpZNDUXvcoI7sRYOlkqCpl058kzSXJFJ008xgwhpN\nDOskhRI1jbZ+GHFT0q5R5jea28/9wJY8qJTLx6skkpVCFuehiblcDCOoNEUG6dFG\nY3xIrq6BhCUIdLCphLVULWs/JM9AFTTKUFsy4V5x0R6cwVRpTO6772whLQl2B47Z\nWvFPuU5xp7ElcC2DnFA1fDCptbbYpF7hjpIP+ZFhrpi07AcZFiT44O5FCWR/FT9c\nE3cChacJtd8lahW+tQ==\n-----END CERTIFICATE-----",
+        "post.logout.redirect.uris": "http://localhost:9190/*"
+      },
+      "redirectUris": [
+        "http://localhost:9190/*"
+      ],
+      "adminUrl": "http://localhost:9190/",
+      "baseUrl": "http://localhost:9190/",
+      "defaultClientScopes": [
+        "role_list"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "admin-saml",
+      "enabled": true,
+      "email": "admin@example.com",
+      "emailVerified": true,
+      "firstName": "Admin",
+      "lastName": "Saml",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "12345678",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "user",
+        "admin"
+      ]
+    },
+    {
+      "username": "user-saml",
+      "enabled": true,
+      "email": "user-saml@example.com",
+      "emailVerified": true,
+      "firstName": "User",
+      "lastName": "Saml",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "12345678",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "user"
+      ]
+    }
+  ]
+}

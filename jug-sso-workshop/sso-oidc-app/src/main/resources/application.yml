@@ -1,0 +1,26 @@
+KEYCLOAK_REALM: http://oidc.keycloak.local:8180/realms/workshop-oidc-realm
+
+server:
+  port: 9180
+
+spring:
+  application:
+    name: sso-oidc-app
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_REALM}
+      client:
+        provider:
+          keycloak:
+            issuer-uri: ${KEYCLOAK_REALM}
+        registration:
+          sso-oidc-app:
+            client-authentication-method: none
+            provider: keycloak
+            client-id: oidc-app
+            authorization-grant-type: authorization_code
+            scope: openid,profile,email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+

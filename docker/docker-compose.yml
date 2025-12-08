@@ -1,0 +1,60 @@
+# Docker Compose with two Keycloak instances: OIDC and SAML
+# networks:
+#   default:
+#     name: workshop-net
+
+networks:
+  default:
+    name: workshop-net
+  workshop-net:
+    name: workshop-net
+    driver: bridge
+
+services:
+  # OIDC
+  keycloak-n1:
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak-oidc
+    ports:
+      - "8180:8180"
+    networks:
+      workshop-net:
+        aliases:
+          - oidc.keycloak.local
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: 12345678
+      KC_HOSTNAME: oidc.keycloak.local
+      #z uwagi na różne hosty możę występować problem związany z cookie
+      KC_COOKIE_SAMESITE: none
+      KC_COOKIE_SECURE: false
+    command:
+      - start-dev
+      - --http-port=8180
+      - --import-realm
+    volumes:
+      - ./realms/workshop-oidc.json:/opt/keycloak/data/import/workshop-oidc.json:ro
+
+  keycloak-n2:
+    # SAML
+    image: quay.io/keycloak/keycloak:latest
+    container_name: keycloak-saml
+    ports:
+      - "8190:8190"
+    networks:
+      workshop-net:
+        aliases:
+          - saml.keycloak.local
+    environment:
+      KC_BOOTSTRAP_ADMIN_USERNAME: admin
+      KC_BOOTSTRAP_ADMIN_PASSWORD: 12345678
+      KC_HOSTNAME: saml.keycloak.local
+      #z uwagi na różne hosty możę występować problem związany z cookie
+      KC_COOKIE_SAMESITE: none
+      KC_COOKIE_SECURE: false
+    command:
+      - start-dev
+      - --http-port=8190
+      - --import-realm
+    volumes:
+      - ./realms/workshop-saml.json:/opt/keycloak/data/import/workshop-saml.json:ro
