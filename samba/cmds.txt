@@ -1,0 +1,9 @@
+ldap://samba.local:389
+CN=Users,DC=samba,DC=local
+CN=Administrator,CN=Users,DC=samba,DC=local
+
+docker exec -it smblds samba-tool user show "samba-user"
+docker exec -it smblds samba-tool user create "samba-user" "Password123@!" --use-username-as-cn
+docker exec -it smblds samba-tool user setpassword "samba-user" --newpassword="Password1234@!"
+
+http://oidc.keycloak.local:8180/realms/wrokshop-ad-federation/account

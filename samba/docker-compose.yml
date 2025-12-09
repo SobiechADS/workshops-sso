@@ -1,0 +1,25 @@
+networks:
+  workshop-net:
+    external: true
+    name: workshop-net
+
+services:
+  smblds:
+    image: smblds/smblds:latest
+    container_name: smblds
+    restart: unless-stopped
+    ports:
+      - "389:389"   # LDAP
+      - "636:636"   # LDAPS
+    volumes:
+      - ./samba-data:/var/lib/samba
+    networks:
+      workshop-net:
+        aliases:
+          - samba.local
+    environment:
+      INSECURE_LDAP: true
+      TZ: "Europe/Warsaw"
+      REALM: "SAMBA.LOCAL"
+      DOMAIN: "SAMBA"        
+      ADMINPASS: "Passw0rd123!"
